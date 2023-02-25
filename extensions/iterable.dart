@@ -10,6 +10,8 @@
 //   }
 // }
 
+/// If Iterable contains no value Dart's Iterable.first throws
+/// an exception. To prevent this you can use this getter
 extension OptionalFirst<T> on Iterable<T> {
   T? get optionalFirst => isEmpty ? null : first;
 }
