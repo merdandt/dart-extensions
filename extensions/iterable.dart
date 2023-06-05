@@ -36,3 +36,21 @@ extension Subscript<T> on Iterable<T> {
 /// var list = ['foo', 'bar'];
 /// var item = list[10];
 
+extension NullableIterable<E> on Iterable<E> {
+  ///
+  /// Works like firstWhere but it is nullable,
+  /// returns null if couldn't find any element
+  ///
+  /// ```dart
+  ///  final items = [0, 1, 2, 3, 4];
+  ///  items.firstWhereOrNull((element) => element == 4); // resturns 4
+  ///  items.firstWhereOrNull((element) => element == 5); // resturns null
+  /// ```
+  E? firstWhereOrNull(bool Function(E element) test, {E Function()? orElse}) {
+    for (final element in this) {
+      if (test(element)) return element;
+    }
+    if (orElse != null) return orElse();
+    return null;
+  }
+}
